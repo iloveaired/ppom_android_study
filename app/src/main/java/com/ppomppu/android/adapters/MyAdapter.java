@@ -20,7 +20,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         mDataset = myDataset;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+
+
+    public  class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textView;
 
         public ViewHolder(View v) {
@@ -36,9 +38,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     @Override
     public  ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Log.d(TAG, "MyAdapter::onCreateViewHolder: ");
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.text_row_item, parent, false);
-        ViewHolder vh = new ViewHolder(v);
-        return vh;
+
+
+        if (viewType == 0){
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.text_row_item, parent, false);
+            ViewHolder vh = new ViewHolder(v);
+            return vh;
+        } else {
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.highlight_text_row_item, parent, false);
+            ViewHolder vh = new ViewHolder(v);
+            return vh;
+        }
+
+
     }
 
 
@@ -48,6 +60,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         // with that element
         holder.getTextView().setText(mDataset[position]);
         Log.d(TAG, "Element " + mDataset[position]);
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        // Just as an example, return 0 or 2 depending on position
+        // Note that unlike in ListView adapters, types don't have to be contiguous
+        return position % 2 * 2;
     }
 
     @Override
