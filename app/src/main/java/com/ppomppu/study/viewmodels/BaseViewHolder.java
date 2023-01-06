@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ppomppu.study.R;
 
 
-public class ViewHolder extends RecyclerView.ViewHolder {
+public class BaseViewHolder extends RecyclerView.ViewHolder {
     private final TextView textView;
 
-    public ViewHolder(View v) {
+    public BaseViewHolder(View v) {
         super(v);
 
         this.textView = v.findViewById(R.id.textView);

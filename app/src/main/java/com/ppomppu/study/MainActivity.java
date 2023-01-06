@@ -1,54 +1,113 @@
 package com.ppomppu.study;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 
 import com.ppomppu.study.adapters.MyAdapter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "로그";
-    protected RecyclerView mRecyclerView;
-    protected MyAdapter mAdapter;
-    protected RecyclerView.LayoutManager mLayoutManager;
-    private static final int DATASET_COUNT = 60;
-    protected String[] mDataset;
+    protected RecyclerView recyclerView;
+    protected MyAdapter adapter;
 
+    private boolean isLoading = false;
+    private static final int DATASET_COUNT = 5;
+
+    protected List<String> items = new ArrayList<String>();;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "MainActivity::onCreate: ");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recycler_view);
 
-        initDataset();
 
+        recyclerView = findViewById(R.id.recyclerView);
+        populateData();
 
-        // BEGIN_INCLUDE(initializeRecyclerView)
-        mRecyclerView = findViewById(R.id.recyclerView);
+        initAdapter();
 
-        // LinearLayoutManager is used here, this will layout the elements in a similar fashion
-        // to the way ListView would layout elements. The RecyclerView.LayoutManager defines how
-        // elements are laid out.
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-      //  mRecyclerView.scrollToPosition(scrollPosition);
-
-
-        mAdapter = new MyAdapter(mDataset);
-        // Set CustomAdapter as the adapter for RecyclerView.
-        mRecyclerView.setAdapter(mAdapter);
-
+        //https://www.digitaloceahttps://www.digitalocean.com/community/tutorials/android-recyclerview-load-more-endless-scrollingn.com/community/tutorials/android-recyclerview-load-more-endless-scrolling
+        initScrollListener();
 
     }
 
-    private void initDataset() {
-        mDataset = new String[DATASET_COUNT];
-        for (int i = 0; i < DATASET_COUNT; i++) {
-            mDataset[i] = "This is element #" + i;
+    private void populateData() {
+
+        for (int i = 0; i < 10; i++) {
+            items.add("This is element #" + String.valueOf(i));
         }
     }
+
+
+
+    private void initAdapter() {
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+
+        adapter = new MyAdapter(items);
+        recyclerView.setAdapter(adapter);
+
+    }
+
+    private void initScrollListener() {
+        recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+
+                if (!isLoading) {
+                    if (layoutManager != null && layoutManager.findLastCompletelyVisibleItemPosition() == items.size() - 1) {
+                        //리스트 마지막
+                        loadMore();
+                        isLoading = true;
+                    }
+                }
+            }
+        });
+    }
+
+    private void loadMore() {
+        items.add(null);
+        adapter.notifyItemInserted(items.size() - 1);
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                items.remove(items.size() - 1);
+                int scrollPosition = items.size();
+                adapter.notifyItemRemoved(scrollPosition);
+                int currentSize = scrollPosition;
+                int nextLimit = currentSize + 10;
+
+                while (currentSize - 1 < nextLimit) {
+                    items.add("Item " + currentSize);
+                    currentSize++;
+                }
+
+                adapter.notifyDataSetChanged();
+                isLoading = false;
+            }
+        }, 1000);
+    }
+
+
 }

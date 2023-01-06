@@ -1,24 +1,19 @@
 package com.ppomppu.study.viewmodels;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.DrawableUtils;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.ppomppu.study.R;
 import com.ppomppu.study.databinding.ViewEmojiTextBinding;
-import com.ppomppu.study.databinding.ViewNormalTextBinding;
 
 
-public class EmojiViewHolder extends ViewHolder {
+public class EmojiBaseViewHolder extends BaseViewHolder {
     private static final String TAG = "로그";
     private final ViewEmojiTextBinding binding;
-    public EmojiViewHolder(@NonNull ViewEmojiTextBinding binding) {
+    public EmojiBaseViewHolder(@NonNull ViewEmojiTextBinding binding) {
 
         super(binding.getRoot());
 

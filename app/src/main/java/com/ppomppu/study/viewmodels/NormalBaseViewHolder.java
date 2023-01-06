@@ -9,10 +9,10 @@ import androidx.annotation.NonNull;
 import com.ppomppu.study.databinding.ViewNormalTextBinding;
 
 
-public class NormalViewHolder extends ViewHolder {
+public class NormalBaseViewHolder extends BaseViewHolder {
     private static final String TAG = "로그";
     private final ViewNormalTextBinding binding;
-    public NormalViewHolder(@NonNull ViewNormalTextBinding binding) {
+    public NormalBaseViewHolder(@NonNull ViewNormalTextBinding binding) {
         super(binding.getRoot());
         this.binding = binding;
     }

@@ -1,7 +1,6 @@
 package com.ppomppu.study.viewmodels;
 
 import android.content.Context;
-import android.text.format.DateUtils;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -10,10 +9,10 @@ import com.ppomppu.study.databinding.ViewHighlightTextBinding;
 
 
 
-public class HighlightViewHolder extends ViewHolder {
+public class HighlightBaseViewHolder extends BaseViewHolder {
     private static final String TAG = "로그";
     private final ViewHighlightTextBinding binding;
-    public HighlightViewHolder(@NonNull ViewHighlightTextBinding binding) {
+    public HighlightBaseViewHolder(@NonNull ViewHighlightTextBinding binding) {
         super(binding.getRoot());
         this.binding = binding;
     }
