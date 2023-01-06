@@ -7,11 +7,15 @@ import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ppomppu.study.databinding.ViewEmojiTextBinding;
 import com.ppomppu.study.databinding.ViewHighlightTextBinding;
 
 import com.ppomppu.study.R;
 import com.ppomppu.study.databinding.ViewHighlightTextBinding;
+import com.ppomppu.study.databinding.ViewNormalTextBinding;
+import com.ppomppu.study.viewmodels.EmojiViewHolder;
 import com.ppomppu.study.viewmodels.HighlightViewHolder;
+import com.ppomppu.study.viewmodels.NormalViewHolder;
 import com.ppomppu.study.viewmodels.ViewHolder;
 
 public class MyAdapter extends RecyclerView.Adapter<ViewHolder> {
@@ -34,19 +38,11 @@ public class MyAdapter extends RecyclerView.Adapter<ViewHolder> {
 
 
         if (viewType == 0){
-
-//                LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-//                return new HighlightMessageMeViewHolder(ViewHighlightMessageMeHolderBinding.inflate(inflater, parent, false));
-//            }
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
             return new HighlightViewHolder(ViewHighlightTextBinding.inflate(inflater,parent,false ));
-
-
         } else {
-
-            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.highlight_text_row_item, parent, false);
-            ViewHolder vh = new ViewHolder(v);
-            return vh;
+            LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+            return new EmojiViewHolder(ViewEmojiTextBinding.inflate(inflater,parent,false ));
         }
 
 
@@ -57,7 +53,7 @@ public class MyAdapter extends RecyclerView.Adapter<ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         // Get element from your dataset at this position and replace the contents of the view
         // with that element
-        holder.getTextView().setText(mDataset[position]);
+       //    holder.getTextView().setText(mDataset[position]);
         Log.d(TAG, "Element " + mDataset[position]);
         holder.onBindViewHolder(mDataset[position]);
 
