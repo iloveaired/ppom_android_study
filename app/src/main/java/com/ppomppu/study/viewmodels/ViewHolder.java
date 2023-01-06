@@ -1,12 +1,11 @@
-package com.ppomppu.android.viewmodels;
+package com.ppomppu.study.viewmodels;
 
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ppomppu.android.R;
+import com.ppomppu.study.R;
 
 
 public class ViewHolder extends RecyclerView.ViewHolder {

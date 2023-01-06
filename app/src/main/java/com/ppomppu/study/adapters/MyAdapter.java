@@ -1,17 +1,16 @@
-package com.ppomppu.android.adapters;
+package com.ppomppu.study.adapters;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ppomppu.android.R;
-import com.ppomppu.android.databinding.ViewHighlightTextBinding;
-import com.ppomppu.android.viewmodels.HighlightViewHolder;
-import com.ppomppu.android.viewmodels.ViewHolder;
+import com.ppomppu.study.R;
+import com.ppomppu.study.databinding.ViewHighlightTextBinding;
+import com.ppomppu.study.viewmodels.HighlightViewHolder;
+import com.ppomppu.study.viewmodels.ViewHolder;
 
 public class MyAdapter extends RecyclerView.Adapter<ViewHolder> {
 

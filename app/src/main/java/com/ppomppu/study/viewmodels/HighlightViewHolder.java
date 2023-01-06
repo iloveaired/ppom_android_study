@@ -1,8 +1,8 @@
-package com.ppomppu.android.viewmodels;
+package com.ppomppu.study.viewmodels;
 
 import android.util.Log;
 
-import com.ppomppu.android.databinding.ViewHighlightTextBinding;
+import com.ppomppu.study.databinding.ViewHighlightTextBinding;
 
 public class HighlightViewHolder extends ViewHolder {
     private static final String TAG = "로그";
