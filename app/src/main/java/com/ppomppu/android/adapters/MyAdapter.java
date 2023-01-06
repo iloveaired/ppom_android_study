@@ -9,8 +9,11 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ppomppu.android.R;
+import com.ppomppu.android.databinding.ViewHighlightTextBinding;
+import com.ppomppu.android.viewmodels.HighlightViewHolder;
+import com.ppomppu.android.viewmodels.ViewHolder;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+public class MyAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     private static final String TAG = "로그";
     private String[] mDataset;
@@ -22,18 +25,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
 
 
-    public  class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView textView;
 
-        public ViewHolder(View v) {
-            super(v);
-
-            this.textView = v.findViewById(R.id.textView);
-        }
-        public TextView getTextView() {
-            return textView;
-        }
-    }
 
     @Override
     public  ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -41,9 +33,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
 
         if (viewType == 0){
-            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.text_row_item, parent, false);
-            ViewHolder vh = new ViewHolder(v);
-            return vh;
+
+//                LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+//                return new HighlightMessageMeViewHolder(ViewHighlightMessageMeHolderBinding.inflate(inflater, parent, false));
+//            }
+            LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+            return new HighlightViewHolder(ViewHighlightTextBinding.inflate(inflater,parent,false ));
+
+
         } else {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.highlight_text_row_item, parent, false);
             ViewHolder vh = new ViewHolder(v);
@@ -60,6 +57,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         // with that element
         holder.getTextView().setText(mDataset[position]);
         Log.d(TAG, "Element " + mDataset[position]);
+        holder.onBindViewHolder(mDataset[position]);
+
     }
 
     @Override
