@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.ppomppu.android'
+    namespace 'com.ppomppu.study'
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.ppomppu.android"
+        applicationId "com.ppomppu.study"
         minSdk 21
         targetSdk 32
         versionCode 1
