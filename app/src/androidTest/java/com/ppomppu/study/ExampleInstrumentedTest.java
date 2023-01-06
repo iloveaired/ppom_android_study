@@ -1,4 +1,4 @@
-package com.ppomppu.android;
+package com.ppomppu.study;
 
 import android.content.Context;
 

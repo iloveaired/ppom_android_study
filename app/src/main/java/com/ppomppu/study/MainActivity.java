@@ -1,4 +1,4 @@
-package com.ppomppu.android;
+package com.ppomppu.study;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -6,10 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.RadioButton;
 
-import com.ppomppu.android.adapters.MyAdapter;
+import com.ppomppu.study.adapters.MyAdapter;
 
 public class MainActivity extends AppCompatActivity {
 

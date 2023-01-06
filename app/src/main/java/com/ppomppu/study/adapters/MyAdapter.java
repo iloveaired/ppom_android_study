@@ -1,4 +1,4 @@
-package com.ppomppu.android.adapters;
+package com.ppomppu.study.adapters;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ppomppu.android.R;
+import com.ppomppu.study.R;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
