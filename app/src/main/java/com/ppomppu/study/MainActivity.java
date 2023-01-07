@@ -1,6 +1,7 @@
 package com.ppomppu.study;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
@@ -16,18 +17,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         CounterViewModel viewModel =  new ViewModelProvider(this).get(CounterViewModel.class);
 
-        binding.textviewCount.setText(viewModel.counter());
+        binding.fabAdd.setOnClickListener( v ->  viewModel.inc());
+        binding.fabRemove.setOnClickListener( v ->  viewModel.dec());
 
-
-        binding.fabAdd.setOnClickListener( v -> {
-            viewModel.inc();
-            binding.textviewCount.setText(viewModel.counter());
+        viewModel.counter.observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                binding.textviewCount.setText(integer+"");
+            }
         });
-
-        binding.fabRemove.setOnClickListener( v -> {
-            viewModel.dec();
-            binding.textviewCount.setText(viewModel.counter());
-        });
-
     }
 }
