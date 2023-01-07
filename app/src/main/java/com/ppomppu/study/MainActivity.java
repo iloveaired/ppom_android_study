@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private static final String TAG = "로그";
-
+    private int counter = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,19 +21,18 @@ public class MainActivity extends AppCompatActivity {
         ActivityCounterBinding binding = ActivityCounterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-       final CounterViewModel viewModel =  new ViewModelProvider(this).get(CounterViewModel.class);
 
-        binding.textviewCount.setText("0");
+        binding.textviewCount.setText(counter + "");
         Log.d(TAG, "MainActivity::onCreate: ");
 
         binding.fabAdd.setOnClickListener( v -> {
-            viewModel.counter++;
-            binding.textviewCount.setText(viewModel.counter+"");
+            counter++;
+            binding.textviewCount.setText(counter+"");
         });
 
         binding.fabRemove.setOnClickListener( v -> {
-            viewModel.counter--;
-            binding.textviewCount.setText(viewModel.counter+"");
+            counter--;
+            binding.textviewCount.setText(counter+"");
         });
 
     }
