@@ -3,18 +3,10 @@ package com.ppomppu.study;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
-import android.util.Log;
-
 import com.ppomppu.study.databinding.ActivityCounterBinding;
-
 public class MainActivity extends AppCompatActivity {
 
-     CounterViewModel viewModel ;
-
-
-    private static final String TAG = "로그";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +14,10 @@ public class MainActivity extends AppCompatActivity {
 
         ActivityCounterBinding binding = ActivityCounterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        viewModel =  new ViewModelProvider(this).get(CounterViewModel.class);
+        CounterViewModel viewModel =  new ViewModelProvider(this).get(CounterViewModel.class);
 
-        binding.textviewCount.setText("0");
-        Log.d(TAG, "MainActivity::onCreate: ");
+        binding.textviewCount.setText(viewModel.counter());
+
 
         binding.fabAdd.setOnClickListener( v -> {
             viewModel.inc();
@@ -33,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         binding.fabRemove.setOnClickListener( v -> {
-            viewModel.counter--;
+            viewModel.dec();
             binding.textviewCount.setText(viewModel.counter());
         });
 
