@@ -8,12 +8,7 @@ public class CounterViewModel extends ViewModel {
     public CounterViewModel(){
         counter.setValue(0);
     }
-    public MutableLiveData<Integer> count() {
-        return counter;
-    }
-    public String counter(){
-        return counter.getValue().toString();
-    }
+
     public void inc() {
         counter.setValue(counter.getValue() + 1);
     }

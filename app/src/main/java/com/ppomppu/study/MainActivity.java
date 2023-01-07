@@ -15,16 +15,15 @@ public class MainActivity extends AppCompatActivity {
 
         ActivityCounterBinding binding = ActivityCounterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        binding.setLifecycleOwner(this);
         CounterViewModel viewModel =  new ViewModelProvider(this).get(CounterViewModel.class);
 
-        binding.fabAdd.setOnClickListener( v ->  viewModel.inc());
-        binding.fabRemove.setOnClickListener( v ->  viewModel.dec());
+        binding.setViewModel(viewModel);
 
-        viewModel.counter.observe(this, new Observer<Integer>() {
-            @Override
-            public void onChanged(Integer integer) {
-                binding.textviewCount.setText(integer+"");
-            }
-        });
+//        binding.fabAdd.setOnClickListener( v ->  viewModel.inc());
+//        binding.fabRemove.setOnClickListener( v ->  viewModel.dec());
+
+
     }
 }
