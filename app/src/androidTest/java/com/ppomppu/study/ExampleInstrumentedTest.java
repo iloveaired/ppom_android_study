@@ -10,6 +10,8 @@ import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
 
+import com.ppomppu.study.utils.PPomPrefs;
+
 /**
  * Instrumented test, which will execute on an Android device.
  *
@@ -21,6 +23,18 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.ppomppu.android", appContext.getPackageName());
+        assertEquals("com.ppomppu.study", appContext.getPackageName());
+    }
+    @Test
+    public void ppomPrefs() {
+        // Context of the app under test.
+        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+
+        PPomPrefs.init(context.getApplicationContext());
+
+//        final String emojiContainerSerialized = EmojiManager.getInstance().encodeEmojiContainer(emojiContainer);
+//        UIKitPrefs.putString(StringSet.KEY_EMOJI_CONTAINER, emojiContainerSerialized);
+
+        assertEquals("com.ppomppu.study", context.getPackageName());
     }
 }
